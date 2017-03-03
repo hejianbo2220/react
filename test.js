@@ -33,3 +33,5 @@ ReactDOM.render(<Website />, document.getElementById("app"));
 // http://www.ruanyifeng.com/blog/2015/03/react.html
 // http://www.runoob.com/react/react-props.html
 // https://facebook.github.io/react/docs/introducing-jsx.html
+// http-server root path ./
+// chrome react developer tools
