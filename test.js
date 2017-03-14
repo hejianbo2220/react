@@ -1,72 +1,28 @@
-class UserGreeting extends React.Component{
-	render () {
-		return (
-			<h1>Welcome back</h1>
-		);
-	}
-}
-class GuestGreeting extends React.Component{
-	render () {
-		return (
-			<h1>Please sign up</h1>
-		);
-	}
-}
-class Greeting extends React.Component{
+class NameForm extends React.Component{
 	constructor (props) {
 		super(props);
+		this.state = {value: ""};
+		this.handleChange = this.handleChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
 	}
-	render () {
-		const isLoggedIn = this.props.isLoggedIn;
-		if (isLoggedIn) {
-			return <UserGreeting />
-		} else {
-			return <GuestGreeting />
-		}
+	handleChange (event) {
+		this.setState({value: event.target.value});
 	}
-}
-class LoginBtn extends React.Component{
-	constructor (props) {
-		super(props);
+	handleSubmit (event) {
+		alert("A Name was submitted: " + this.state.value);
+		event.preventDefault();
 	}
 	render () {
 		return (
-			<button onClick={this.props.onClick}>Login</button>
-		);
-	}
-}
-class LogoutBtn extends React.Component{
-	constructor (props) {
-		super(props);
-	}
-	render () {
-		return (
-			<button onClick={this.props.onClick}>Logout</button>
-		);
-	}
-}
-class LoginControl extends React.Component{
-	constructor (props) {
-		super(props);
-		this.handleLoginClick = this.handleLoginClick.bind(this);
-		this.handleLogoutClick = this.handleLogoutClick.bind(this);
-		this.state = {isLoggedIn: false};
-	}
-	handleLoginClick () {
-		this.setState({isLoggedIn: true});
-	}
-	handleLogoutClick () {
-		this.setState({isLoggedIn: false});
-	}
-	render () {
-		const isLoggedIn = this.state.isLoggedIn;
-		return (
-			<div>
-				<Greeting isLoggedIn={isLoggedIn} />
-				{isLoggedIn ? (<LogoutBtn onClick = {this.handleLogoutClick} />) : (<LoginBtn onClick={this.handleLoginClick} />)}
-			</div>
+			<form onSubmit={this.handleSubmit}>
+				<label>
+					Name:
+					<input type="text" onChange={this.handleChange} />
+				</label>
+				<input type="submit" value="Submit" />
+			</form>
 		);
 	}
 }
 
-ReactDOM.render(<LoginControl />, document.getElementById("app"));
+ReactDOM.render(<NameForm />, document.getElementById("app"));

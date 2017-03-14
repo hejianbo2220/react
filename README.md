@@ -1574,6 +1574,6 @@ If you have ideas for more “How To” recipes that should be on this page, [le
 
 http://www.ruanyifeng.com/blog/2015/03/react.html
 http://www.runoob.com/react/react-props.html
-https://facebook.github.io/react/docs/handling-events.html
+https://facebook.github.io/react/docs/forms.html
 http-server root path ./
 chrome react developer tools
