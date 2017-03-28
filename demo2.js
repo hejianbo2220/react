@@ -13,9 +13,6 @@ class GuestGreeting extends React.Component{
 	}
 }
 class Greeting extends React.Component{
-	constructor (props) {
-		super(props);
-	}
 	render () {
 		const isLoggedIn = this.props.isLoggedIn;
 		if (isLoggedIn) {
@@ -26,9 +23,6 @@ class Greeting extends React.Component{
 	}
 }
 class LoginBtn extends React.Component{
-	constructor (props) {
-		super(props);
-	}
 	render () {
 		return (
 			<button onClick={this.props.onClick}>Login</button>
@@ -36,9 +30,6 @@ class LoginBtn extends React.Component{
 	}
 }
 class LogoutBtn extends React.Component{
-	constructor (props) {
-		super(props);
-	}
 	render () {
 		return (
 			<button onClick={this.props.onClick}>Logout</button>

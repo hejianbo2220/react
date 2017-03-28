@@ -1,7 +1,4 @@
 class FancyBorder extends React.Component {
-	constructor (props) {
-		super(props);
-	}
 	render () {
 		return (
 			<div className={'FancyBorder FancyBorder-' + this.props.color}>
@@ -11,9 +8,6 @@ class FancyBorder extends React.Component {
 	}
 }
 class Dialog extends React.Component {
-	constructor (props) {
-		super(props);
-	}
 	render () {
 		return (
 			<FancyBorder color="blue">
