@@ -1,27 +1,52 @@
-class TodoList extends React.Component {
-	constructor (props) {
-		super(props);
-		this.state = {
-			todo: "",
-			todos: []
-		}
-		this.addTodo = this.addTodo.bind(this);
-	}
-	addTodo (e) {
-		const {todo, todos} = this.state;
-		todos.push(todo);
-		this.setState({todo: "", todos});
-	}
+// React Component
+class Counter extends React.Component {
 	render () {
 		return (
 			<div>
-				<h1>待办列表</h1>
-				<div>
-					<input type="text" onChange={e => this.setState({todo: e.target.value})} />
-					<button onClick={this.addTodo}>添加</button>
-				</div>
+				<h1>{this.props.value}</h1>
+				<button onClick={this.props.onIncrement}>+</button>
+				<button onClick={this.props.onDecrement}>-</button>
 			</div>
 		);
 	}
 }
-ReactDOM.render(<TodoList />, document.getElementById("app"));
+
+// Reducer
+const counter = (state = {count: 0}, action) => {
+	const count = state.count;
+	switch (action.type) {
+		case "INCREMENT":
+			return {count: count + 1};
+			break;
+		case "DECREMENT":
+			return {count: count - 1};
+			break;
+		default: 
+			return state;
+	}
+}
+
+// Store
+const store = Redux.createStore(counter);
+
+// Map Redux state to component props
+const mapStateToProps = (state) => {
+	console.log(state);
+	return {value: state.count}
+}
+
+// Map Redux actions to component props
+const mapDispatchToProps = (dispatch) => {
+	return {
+		onIncrement: () => dispatch({type: "INCREMENT"}),
+		onDecrement: () => dispatch({type: "DECREMENT"})
+	}
+}
+
+// Connected Component
+const App = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Counter);
+
+// Provider Component
+class Provider extends ReactRedux.Provider {}
+
+ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById("app"));
