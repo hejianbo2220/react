@@ -31,7 +31,6 @@ const store = Redux.createStore(counter);
 
 // Map Redux state to component props
 const mapStateToProps = (state) => {
-	console.log(state);
 	return {value: state.count}
 }
 
